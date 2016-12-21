@@ -7,4 +7,5 @@ include 'equal_sides_of_an_array'
 include 'count_the_digit'
 include 'digital_root'
 include 'triple_trouble'
+include 'triangular_treasure'
 
