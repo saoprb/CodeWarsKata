@@ -43,4 +43,11 @@ public class WhichAreIn {
 
         return listA.stream().filter(key -> group.contains(key)).distinct().sorted().toArray(String[]::new);
     }
+
+    public static String[] inArrayLambda2(String[] a, String[] b) {
+        java.util.ArrayList<String> listA = new java.util.ArrayList<>(java.util.Arrays.asList(a));
+        java.util.ArrayList<String> listB = new java.util.ArrayList<>(java.util.Arrays.asList(b));
+
+        return listA.stream().filter(p -> listB.stream().anyMatch(q -> q.contains(p))).distinct().sorted().toArray(String[]::new);
+    }
 }

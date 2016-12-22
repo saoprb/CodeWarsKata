@@ -23,4 +23,12 @@ public class WhichAreInTest {
         String r[] = new String[] { "arp", "live", "strong" };
         assertArrayEquals(r, WhichAreIn.inArrayLambda(a, b));
     }
+
+    @Test
+    public void test3() {
+        String a[] = new String[]{ "arp", "live", "strong" };
+        String b[] = new String[] { "lively", "alive", "harp", "sharp", "armstrong" };
+        String r[] = new String[] { "arp", "live", "strong" };
+        assertArrayEquals(r, WhichAreIn.inArrayLambda2(a, b));
+    }
 }
