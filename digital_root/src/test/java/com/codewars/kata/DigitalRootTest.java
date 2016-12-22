@@ -29,11 +29,11 @@ rootIs(493193)
 
     @Test
     public void Tests() {
-        assertEquals( "Nope!" , DigitalRoot.rootIs(16), 7);
-        assertEquals( "Nope!" , DigitalRoot.rootIs(195), 6);
-        assertEquals( "Nope!" , DigitalRoot.rootIs(992), 2);
-        assertEquals( "Nope!" , DigitalRoot.rootIs(99999999), 9);
-        assertEquals( "Nope!" , DigitalRoot.rootIs(167346), 9);
-        assertEquals( "Nope! Should work for 0" , DigitalRoot.rootIs(0), 0);
+        assertThat("Nope!", DigitalRoot.rootIs(16), is(equalTo(7)));
+        assertThat("Nope!", DigitalRoot.rootIs(195), is(equalTo(6)));
+        assertThat("Nope!", DigitalRoot.rootIs(992), is(equalTo(2)));
+        assertThat("Nope!", DigitalRoot.rootIs(99999999), is(equalTo(9)));
+        assertThat("Nope!", DigitalRoot.rootIs(167346), is(equalTo(9)));
+        assertThat("Nope! Should work for 0", DigitalRoot.rootIs(0), is(equalTo(0)));
     }
 }
