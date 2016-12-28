@@ -7,11 +7,11 @@ package com.codewars.kata;
 public class PascalTriangle {
 
     public static int[][] pascal(int depth) {
-        return pascal(depth, new int[1], null, 1, 0, new java.util.ArrayList<int[]>());
+        return pascal(depth, new int[1], null, 1, 0, new int[depth][]);
     }
 
-    public static int[][] pascal(int depth, int[] thisLevel, int[] previousLevel, int currentLevel, int currentIndex, java.util.List<int[]> pascalTree) {
-        addNewLevelAtStart(thisLevel, currentIndex, pascalTree);
+    public static int[][] pascal(int depth, int[] thisLevel, int[] previousLevel, int currentLevel, int currentIndex, int[][] pascalTree) {
+        addToPascalTreeAtNewLevelStart(thisLevel, currentLevel, currentIndex, pascalTree);
         setValueInBetweenByAddingLeftAndRightParents(thisLevel, previousLevel, currentIndex);
         setValueAtBothEndsToOne(thisLevel, currentIndex);
         if (currentIndex < thisLevel.length) {
@@ -19,13 +19,13 @@ public class PascalTriangle {
         } else if (currentLevel < depth) {
             return addPascalLevel (depth, thisLevel, currentLevel, pascalTree);
         } else {
-            return toArray(pascalTree);
+            return pascalTree;
         }
     }
 
-    public static void addNewLevelAtStart(int[] thisLevel, int currentIndex, java.util.List<int[]> pascalTree) {
+    public static void addToPascalTreeAtNewLevelStart(int[] thisLevel, int currentLevel, int currentIndex, int[][] pascalTree) {
         if (currentIndex == 0) {
-            pascalTree.add(thisLevel);
+            pascalTree[currentLevel-1] = thisLevel;
         }
     }
 
@@ -41,17 +41,13 @@ public class PascalTriangle {
         }
     }
 
-    public static int[][] setTheNextPascalValue(int depth, int[] thisLevel, int[] previousLevel, int currentLevel, int currentIndex, java.util.List<int[]> pascalTree) {
+    public static int[][] setTheNextPascalValue(int depth, int[] thisLevel, int[] previousLevel, int currentLevel, int currentIndex, int[][] pascalTree) {
         return pascal(depth, thisLevel, previousLevel, currentLevel, ++currentIndex, pascalTree);
     }
 
-    public static int[][] addPascalLevel(int depth, int[] previousLevel, int currentLevel, java.util.List<int[]> pascalTree) {
+    public static int[][] addPascalLevel(int depth, int[] previousLevel, int currentLevel, int[][] pascalTree) {
         currentLevel++;
         return pascal(depth, new int[currentLevel], previousLevel, currentLevel, 0, pascalTree);
-    }
-
-    public static int[][] toArray(java.util.List<int[]> pascalTree) {
-        return pascalTree.toArray(new int[1][1]);
     }
 
     public static int[][] pascal2(int depth) {
