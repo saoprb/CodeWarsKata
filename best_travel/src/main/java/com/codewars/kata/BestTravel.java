@@ -4,7 +4,12 @@ package com.codewars.kata;
  * Created by saoprb on 12/28/16.
  */
 public class BestTravel {
+
+    private static int iterations;
+
     public static Integer chooseBestSum(int t, int k, java.util.List<Integer> ls) {
+        iterations = 0;
+
         if (ls.size() < k) {
             return null;
         }
@@ -14,6 +19,7 @@ public class BestTravel {
             return null;
         }
 
+        System.out.format("    **%s**    ", iterations);
         return bestDistance;
 
 //        int bestDistance = 0;
@@ -50,7 +56,8 @@ public class BestTravel {
 //        return bestDistance;
     }
 
-    public static Integer chooseBestSum(int distanceLimit, int travelLimit, java.util.List<Integer> listDistances, int travelCount, int bestDistance, int accumulatedDistance, java.util.Set<Integer> markedTravels) {
+    private static Integer chooseBestSum(int distanceLimit, int travelLimit, java.util.List<Integer> listDistances, int travelCount, int bestDistance, int accumulatedDistance, java.util.Set<Integer> markedTravels) {
+        iterations++;
         if (travelCount < travelLimit) {
             for (int travel = 0; travel < listDistances.size(); travel++) {
                 if (markedTravels.contains(travel)) {
