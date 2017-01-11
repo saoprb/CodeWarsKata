@@ -29,10 +29,6 @@ public class Emirps {
             result[0]++;
             result[1] = testPrime;
             result[2] += testPrime;
-
-            //System.out.format("count[%s] largestPrime[%s] sum[%s]%n", result[0], result[1], result[2]);
-            //System.out.format("assertTrue(Emirps.isPrime(%s));%n", testPrime);
-            //System.out.format("assertTrue(Emirps.isPrime(%s));%n", reversed);
         }
 
         return result;
@@ -40,7 +36,6 @@ public class Emirps {
 
 
     public static void generatePrimesBasedOnEratosthenes(long limitPrime) {
-        //segmentTotal = (long) Math.sqrt(limitPrime)*limitPrime/segmentSize + 1;
         segmentTotal = limitPrime/segmentSize + 1;
         primesTable = new boolean[(int)segmentTotal][];
 
@@ -58,28 +53,11 @@ public class Emirps {
                     if (index <= limitPrime) {
                         int x = (int) index / segmentSize;
                         int y = (int) index % segmentSize;
-                        //System.out.format("index[%s]: primesTable[%s][%s]%n",index,x,y);
                         primesTable[x][y] = false;
                     }
                 }
             }
         }
-
-//        long leftFactor = 2;
-//        while (leftFactor <= Math.sqrt(limitPrime)) {
-//            if (isPrime(leftFactor)) {
-//                long rightFactor = leftFactor*leftFactor;
-//                while (rightFactor < limitPrime) {
-//                    long index = rightFactor - 2;
-//                    int x = (int) index / segmentSize;
-//                    int y = (int) index % segmentSize;
-//                    //System.out.format("index[%s]: primesTable[%s][%s]%n",index,x,y);
-//                    primesTable[x][y] = -1;
-//                    rightFactor += leftFactor;
-//                }
-//            }
-//            leftFactor++;
-//        }
 
         largestCachedPrime = limitPrime;
     }
@@ -97,10 +75,7 @@ public class Emirps {
         int x = (int) index / segmentSize;
         int y = (int) index % segmentSize;
 
-        //System.out.format("testPrime[%s] index[%s] primesTable[%s][%s]%n",testPrime,index,x,y);
-        //long[] segment = primesTable[x];
-
-        if (primesTable[x][y]) {
+            if (primesTable[x][y]) {
             return true;
         }
 
