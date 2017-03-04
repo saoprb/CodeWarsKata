@@ -1,12 +1,25 @@
 package com.codewars.kata;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
+
+import java.io.IOException;
+
 import static org.junit.Assert.*;
 
 /**
  * Created by saoprb on 1/5/17.
  */
 public class EmirpsTest {
+
+    @BeforeClass
+    public static void beforeClass() {
+        try {
+            Thread.sleep(30*1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Test
     public void givenInput10WhenFindEmirpThen0_0_0() {

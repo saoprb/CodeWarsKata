@@ -5,73 +5,36 @@ package com.codewars.kata;
  */
 public class BestTravel {
 
-    private static int iterations;
-
     public static Integer chooseBestSum(int t, int k, java.util.List<Integer> ls) {
-        iterations = 0;
-
         if (ls.size() < k) {
             return null;
         }
 
-        Integer bestDistance = chooseBestSum(t, k, ls, 0, 0, 0, new java.util.HashSet<>());
+        Integer bestDistance = chooseBestSum1(t, k, ls);
+
         if (bestDistance == 0) {
             return null;
         }
 
-        System.out.format("    **%s**    ", iterations);
         return bestDistance;
-
-//        int bestDistance = 0;
-//
-//        for (int travel1 = 0; travel1 < ls.size(); travel1++) {
-//            int newDistance1 = ls.get(travel1);
-//            if (newDistance1 > bestDistance && newDistance1 <= t) {
-//                bestDistance = newDistance1;
-//            }
-//            for (int travel2 = 0; travel2 < ls.size(); travel2++) {
-//                if (travel2 == travel1) {
-//                    continue;
-//                }
-//                int newDistance2 = newDistance1 + ls.get(travel2);
-//                if (newDistance2 > bestDistance && newDistance2 <= t) {
-//                    bestDistance = newDistance2;
-//                }
-//                for (int travel3 = 0; travel3 < ls.size(); travel3++) {
-//                    if (travel3 == travel1 || travel3 == travel2) {
-//                        continue;
-//                    }
-//                    int newDistance3 = newDistance2 + ls.get(travel3);
-//                    if (newDistance3 > bestDistance && newDistance3 <= t) {
-//                        bestDistance = newDistance3;
-//                    }
-//                }
-//            }
-//        }
-//
-//        if (bestDistance == 0) {
-//            return null;
-//        }
-//
-//        return bestDistance;
     }
 
-    private static Integer chooseBestSum(int distanceLimit, int travelLimit, java.util.List<Integer> listDistances, int travelCount, int bestDistance, int accumulatedDistance, java.util.Set<Integer> markedTravels) {
-        iterations++;
-        if (travelCount < travelLimit) {
-            for (int travel = 0; travel < listDistances.size(); travel++) {
-                if (markedTravels.contains(travel)) {
-                    continue;
+    private static Integer chooseBestSum1(int distanceLimit, int travelLimit, java.util.List<Integer> listDistances) {
+        int bestDistance = -1;
+
+        for (int travel = 0; travel < listDistances.size(); travel++) {
+            int newDistance = listDistances.get(travel);
+
+            if (newDistance <= distanceLimit) {
+                if (travelLimit == 1) {
+                    bestDistance = Math.max(bestDistance, newDistance);
+                } else {
+                    Integer temp = chooseBestSum(distanceLimit - newDistance, travelLimit - 1, listDistances.subList(travel + 1, listDistances.size()));
                 }
-                markedTravels.add(travel);
-                int newDistance = accumulatedDistance + listDistances.get(travel);
-                if (newDistance > bestDistance && newDistance <= distanceLimit) {
-                    bestDistance = newDistance;
-                }
-                bestDistance = chooseBestSum(distanceLimit, travelLimit, listDistances, travelCount + 1, bestDistance, newDistance, markedTravels);
-                markedTravels.remove(travel);
             }
+
         }
+
         return bestDistance;
     }
 
